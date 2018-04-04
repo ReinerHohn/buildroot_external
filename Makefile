@@ -9,8 +9,6 @@ all: main
 main: main.o
 	echo "main"
 
-main.c : de	
-
 output/.br_stamp_patched: buildroot/support/scripts/apply-patches.sh output
 	git checkout buildroot
 	git clean -d -f -x	
@@ -22,8 +20,22 @@ output/.br_stamp_patched: buildroot/support/scripts/apply-patches.sh output
 output/%/.config: output/.br_stamp_patched
 	$(MAKE) O=$(BR2_OUTPUT_DIR)/$* -C buildroot  $*_defconfig
 
+output/%_toolchain/images/toolchain.tar.gz: output/%_toolchain/.config
+	$(MAKE) -C $(subst images,,$(dir $@))
+	tar -C $(dir $<)host -f $@ -lcpz usr
 
+output/%/images/sysroot.tar.gz: output/%/.config
+	$(MAKE) -C $(subst images,, $(dir $<))
+	tar -C $(dir $<)usr -f $@  -lcpz lib usr/lib usr/include
 
+# $* stem, with which implicit rule matches
+define PASS_TEMPLATE
+$(1)-%: output/%/.config
+	echo "Pass template"
+	$(MAKE) -C output/$(1)/ $$*
+endef
+
+$(eval $(call PASS_TEMPLATE,reiner))
 
 rpi: 
 	mkdir  -p $(BR2_OUTPUT_DIR)/rpi
