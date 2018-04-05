@@ -1,7 +1,7 @@
-export BR2_EXTERNAL_MICHAEL_PATH:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-export BR2_DL_DIR:=$(BR2_EXTERNAL_MICHAEL_PATH)/dl
-export BR2_CCACHE_DIR:=$(BR2_EXTERNAL_MICHAEL_PATH)/ccache
-export BR2_OUTPUT_DIR:=$(abspath $(BR2_EXTERNAL_MICHAEL_PATH)/../output/)
+export BR2_EXTERNAL:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+export BR2_DL_DIR:=$(BR2_EXTERNAL)/dl
+export BR2_CCACHE_DIR:=$(BR2_EXTERNAL)/ccache
+export BR2_OUTPUT_DIR:=$(abspath $(BR2_EXTERNAL)/../output/)
 
 all: rpi rpi_init
 	echo "all"
@@ -17,7 +17,7 @@ output:
 	mkdir $@	
 
 output/%/.config: output/.br_stamp_patched
-	$(MAKE) O=$(BR2_OUTPUT_DIR)/$* -C buildroot  $*_defconfig
+	$(MAKE) O=../$(dir $@).. -C buildroot  $*_defconfig
 
 output/%_toolchain/images/toolchain.tar.gz: output/%_toolchain/.config
 	$(MAKE) -C $(subst images,,$(dir $@))

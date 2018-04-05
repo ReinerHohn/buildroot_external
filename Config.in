@@ -1,1 +1,1 @@
-source "package/libpigpio/Config.in"
+source "$BR2_EXTERNAL_MICHAEL_PATH/package/libpigpio/Config.in"
