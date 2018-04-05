@@ -34,11 +34,19 @@ $(1)-%: output/$(1)/.config
 	$(MAKE) -C output/$(1)/ $$*
 endef
 
+
+define SAVE_TEMPLATE
+$(1)-savedefconfig: output/$(1)/.config
+	$(MAKE) -C output/$(1)/ savedefconfig BR2_DEFCONFIG=$(BR2_EXTERNAL)/configs/$(1)_defconfig
+endef
+
 define COMPILE_TEMPLATE
 $(addsuffix /images/sysroot.tar.gz,$(addprefix output/, $(2))): output/$(3)/images/toolchain.tar.gz output/.br_stamp_patched
 $(1): $(addsuffix /images/sysroot.tar.gz,$(addprefix output/, $(2)))
 $(foreach tgt, $(2), $(eval $(call PASS_TEMPLATE,$(tgt))))
 $(foreach tgt, $(3), $(eval $(call PASS_TEMPLATE,$(tgt))))
+$(foreach tgt, $(2), $(eval $(call SAVE_TEMPLATE,$(tgt))))
+$(foreach tgt, $(3), $(eval $(call SAVE_TEMPLATE,$(tgt))))
 endef
 
 $(eval $(call COMPILE_TEMPLATE,rpi,rpi,arm_a53_toolchain))
