@@ -29,17 +29,18 @@ output/%/images/sysroot.tar.gz: output/%/.config
 
 # $* stem, with which implicit rule matches
 define PASS_TEMPLATE
-$(1)-%: output/%/.config
+$(1)-%: output/$(1)/.config
 	echo "Pass template"
 	$(MAKE) -C output/$(1)/ $$*
 endef
 
 define COMPILE_TEMPLATE
 $(addsuffix /images/sysroot.tar.gz,$(addprefix output/, $(2))): output/$(3)/images/toolchain.tar.gz output/.br_stamp_patched
-$(1) : $(addsuffix /images/sysroot.tar.gz,$(addprefix output/, $(2)))
+$(1): $(addsuffix /images/sysroot.tar.gz,$(addprefix output/, $(2)))
+$(foreach tgt, $(2), $(eval $(call PASS_TEMPLATE,$(tgt))))
+$(foreach tgt, $(3), $(eval $(call PASS_TEMPLATE,$(tgt))))
 endef
 
-$(eval $(call PASS_TEMPLATE,reiner))
 $(eval $(call COMPILE_TEMPLATE,rpi,rpi,arm_a53_toolchain))
 
 
