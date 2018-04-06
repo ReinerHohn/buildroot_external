@@ -25,7 +25,7 @@ output/%_toolchain/images/toolchain.tar.gz: output/%_toolchain/.config
 
 output/%/images/sysroot.tar.gz: output/%/.config
 	$(MAKE) -C $(subst images,, $(dir $<))
-	tar -C $(dir $<)usr -f $@  -lcpz lib usr/lib usr/include
+	tar -C $(dir $<)staging -f $@  -lcpz lib usr/lib usr/include
 
 # $* stem, with which implicit rule matches
 define PASS_TEMPLATE
