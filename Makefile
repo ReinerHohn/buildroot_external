@@ -1,6 +1,6 @@
 export BR2_EXTERNAL:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-export BR2_DL_DIR:=$(BR2_EXTERNAL)/dl
-export BR2_CCACHE_DIR:=$(BR2_EXTERNAL)/ccache
+export BR2_DL_DIR:=$(abspath $(BR2_EXTERNAL)/../dl/)
+export BR2_CCACHE_DIR:=$(abspath (BR2_EXTERNAL)/../ccache/)
 export BR2_OUTPUT_DIR:=$(abspath $(BR2_EXTERNAL)/../output/)
 
 all: rpi rpi_init
@@ -50,6 +50,7 @@ $(foreach tgt, $(3), $(eval $(call SAVE_TEMPLATE,$(tgt))))
 endef
 
 $(eval $(call COMPILE_TEMPLATE,rpi,rpi,arm_a53_toolchain))
+$(eval $(call COMPILE_TEMPLATE,rpi,rpi0w_cust,arm_hfv6_toolchain))
 
 
 rpi: 
