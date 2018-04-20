@@ -1,5 +1,5 @@
---- output/gcc49_arm_hfv6_toolchain/host/usr/share/buildroot/toolchainfile.cmake.orig	2018-04-20 17:11:25.759836383 +0200
-+++ output/gcc49_arm_hfv6_toolchain/host/usr/share/buildroot/toolchainfile.cmake	2018-04-20 17:11:48.422981179 +0200
+--- support/misc/toolchainfile.cmake.in.orig	2018-04-20 17:11:25.759836383 +0200
++++ support/misc/toolchainfile.cmake.in	2018-04-20 17:11:48.422981179 +0200
 @@ -27,8 +27,8 @@
  # Note:
  #   if the project forces some of these flag variables, Buildroot is

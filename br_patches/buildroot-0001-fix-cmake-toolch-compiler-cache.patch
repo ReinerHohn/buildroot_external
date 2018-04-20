@@ -1,5 +1,5 @@
---- output/gcc49_arm_hfv6_toolchain/host/usr/share/buildroot/toolchainfile.cmake.orig	2018-04-20 17:06:35.998586370 +0200
-+++ output/gcc49_arm_hfv6_toolchain/host/usr/share/buildroot/toolchainfile.cmake	2018-04-20 17:07:12.271698565 +0200
+--- support/misc/toolchainfile.cmake.in.orig	2018-04-20 17:06:35.998586370 +0200
++++ support/misc/toolchainfile.cmake.in	2018-04-20 17:07:12.271698565 +0200
 @@ -58,8 +58,8 @@
  set(ENV{PKG_CONFIG_SYSROOT_DIR} "${RELOCATED_HOST_DIR}/arm-buildroot-linux-uclibcgnueabihf/sysroot")
  

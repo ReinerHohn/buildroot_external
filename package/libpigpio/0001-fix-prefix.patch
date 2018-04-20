@@ -1,0 +1,11 @@
+--- output/raspberrypi0w/build/libpigpio-1/PIGPIO/Makefile.orig	2018-04-20 17:23:51.545930682 +0200
++++ output/raspberrypi0w/build/libpigpio-1/PIGPIO/Makefile	2018-04-20 17:24:01.605823889 +0200
+@@ -31,7 +31,7 @@
+ 
+ LL3      = -L. -lpigpiod_if2 -pthread -lrt
+ 
+-prefix = /usr/local
++prefix = /usr
+ exec_prefix = $(prefix)
+ bindir = $(exec_prefix)/bin
+ includedir = $(prefix)/include
