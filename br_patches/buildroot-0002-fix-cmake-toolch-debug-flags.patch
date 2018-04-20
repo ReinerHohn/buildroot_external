@@ -1,0 +1,13 @@
+--- output/gcc49_arm_hfv6_toolchain/host/usr/share/buildroot/toolchainfile.cmake.orig	2018-04-20 17:11:25.759836383 +0200
++++ output/gcc49_arm_hfv6_toolchain/host/usr/share/buildroot/toolchainfile.cmake	2018-04-20 17:11:48.422981179 +0200
+@@ -27,8 +27,8 @@
+ # Note:
+ #   if the project forces some of these flag variables, Buildroot is
+ #   screwed up and there is nothing Buildroot can do about that :(
+-set(CMAKE_C_FLAGS_DEBUG "" CACHE STRING "Debug CFLAGS")
+-set(CMAKE_CXX_FLAGS_DEBUG "" CACHE STRING "Debug CXXFLAGS")
++set(CMAKE_C_FLAGS_DEBUG "-g -O0" CACHE STRING "Debug CFLAGS")
++set(CMAKE_CXX_FLAGS_DEBUG "-g -O0" CACHE STRING "Debug CXXFLAGS")
+ set(CMAKE_C_FLAGS_RELEASE " -DNDEBUG" CACHE STRING "Release CFLAGS")
+ set(CMAKE_CXX_FLAGS_RELEASE " -DNDEBUG" CACHE STRING "Release CXXFLAGS")
+ 
